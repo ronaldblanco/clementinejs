@@ -5,6 +5,8 @@
 ## Overview
 
 The pnald version is a personalized version of Clementine.js FCC with a couple improvements:<br>
+Added Socket functionality that can be activated with<br>
+    ---SOCKET=TRUE<br>
 Added Jquery<br>
 Added Bootstrap<br>
 Added w3.css responsive<br>

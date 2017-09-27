@@ -10,3 +10,4 @@ EMAILUSER=email
 EMAILPASS=password
 EMAILHOST=email_server
 EMAILPORT=smtp_port
+SOCKET=FALSO
