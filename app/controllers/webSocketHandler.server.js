@@ -10,12 +10,16 @@ module.exports.respond = function(endpoint,socket,act){
         console.log('WEBSOCKETSERVER->'+config);
         console.log('A client sent us this message:', data.message);
         if(data.message == 'I did add a name to the array!'){
+            config.name = data.name;
+            config.ope = data.ope;
             io.emit('stats', { numClients: numClients, data: config }); 
-            io.emit('broadcast', 'A new name was Add by a Client!');
+            //io.emit('broadcast', config.name + ' was Add by a Client!');
         } 
         else if(data.message == 'I did remove a name to the array!'){
+            config.name = data.name.split('=')[1];
+            config.ope = data.ope;
             io.emit('stats', { numClients: numClients, data: config }); 
-            io.emit('broadcast', 'A name was remove by a Client!');
+            //io.emit('broadcast', config.name + ' was remove by a Client!');
         }
         else if(data.message == 'Send me again please!'){
             //io.emit('stats', { numClients: numClients, data: config }); 

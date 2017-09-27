@@ -11,14 +11,6 @@
     
     <!--WEB SOCKET-->
     <script src="/socket/socket.io.js"></script>  
-    <script> 
-        var socket = io.connect('/');
-        var socket1 = io.connect('/');
-        socket1.on('broadcast', function(data) {
-            console.log('broadcast:', data);
-            alert(data);
-        });
-    </script> 
     <!--WEB SOCKET-->
     
     
@@ -46,6 +38,7 @@
 		<div class="w3-container">
 			<center>
 				<div id = "count"></div>
+				<div id = "lastope"></div>
 			<img src="/public/img/clementine_150.png" />
 			<br />
 			<p class="clementine-text">Clementine.js</p>
@@ -84,11 +77,11 @@
 		</div>
 
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
-		<script type="text/javascript" src="controllers/profileController.client.js"></script>
-		<script type="text/javascript" src="controllers/dataController.client.js"></script>
+		<script type="text/javascript" src="controllers/client/clickController.client.js"></script>
+		<script type="text/javascript" src="controllers/client/profileController.client.js"></script>
+		<script type="text/javascript" src="controllers/client/dataController.client.js"></script>
 		<!--Socket client send-->
-		<script type="text/javascript" src="controllers/webSocketController.client.js"></script>
+		<script type="text/javascript" src="controllers/client/webSocketController.client.js"></script>
 		<!--Socket client send-->
 		
 		<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
