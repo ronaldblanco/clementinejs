@@ -8,7 +8,7 @@
    var name = document.querySelector('#name');
    //var image = document.querySelector('#image');
    var apiUrl = appUrl + '/api/:id/info';
-
+   
    var cont = -1;//-1,3
    function colors(){
       //cont = min;

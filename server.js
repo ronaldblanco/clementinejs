@@ -37,6 +37,7 @@ var emailServer = {
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));
+app.use('/socket', express.static(process.cwd() + '/node_modules/socket.io-client/dist'));
 
 //////////////////////////////////////////////
 app.use(require('cookie-parser')());
@@ -78,27 +79,39 @@ app.use(compression({filter: functions.shouldCompress}));
 
 routes(app, passport, passportTwitter, passportLocal, emailServer);
 
-//Uncomment to used the Websocket Controller
-//using: socket.io http and model config.js as test
-//WEBSOCKET///////////////////////////
-/*var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-var webSocketHandler = require(process.cwd() + '/app/controllers/webSocketHandler.server.js');
-
-var numClients = 0;
-var endpoint = io
-  .of('/')
-  .on('connection', function (socket) {
-      webSocketHandler.respond(endpoint,socket);
-  });
-  
-  var port = process.env.PORT || 8080;
-  server.listen(port,  function () {
-	console.log('Node.js with WebSocket listening on port ' + port + '...');
-});*/
-//WEBSOCKET//////////////////////////
-
+//PORT config
 var port = process.env.PORT || 8080;
-app.listen(port,  function () {
-	console.log('Node.js listening on port ' + port + '...');
-});
+
+//var config = require('./app/models/socketData.js');
+if (process.env.SOCKET === 'TRUE'){
+    //config.act = true;
+    //Instaling Socket.io and http
+    //functions.execute('npm install socket.io http');
+    
+    //Uncomment to used the Websocket Controller
+    //using: socket.io http and model config.js as test
+    //WEBSOCKET///////////////////////////
+    var server = require('http').createServer(app);
+    var io = require('socket.io')(server);
+    var webSocketHandler = require(process.cwd() + '/app/controllers/webSocketHandler.server.js');
+
+    var numClients = 0;
+    var endpoint = io
+        .of('/')
+        .on('connection', function (socket) {
+            webSocketHandler.respond(endpoint,socket,true);
+    });
+
+    server.listen(port,  function () {
+	    console.log('Node.js with WebSocket listening on port ' + port + '...');
+    });
+    //WEBSOCKET//////////////////////////
+    
+} else if (process.env.SOCKET === 'FALSE' || process.env.SOCKET === undefined || process.env.SOCKET === null){
+    //config.act = false;
+    app.listen(port,  function () {
+	    console.log('Node.js listening on port ' + port + '...');
+    });
+}
+
+

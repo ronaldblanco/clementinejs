@@ -1,0 +1,12 @@
+NODE_ENV=development
+GITHUB_KEY=key
+GITHUB_SECRET=secret
+TWITTER_KEY=key
+TWITTER_SECRET=secret
+MONGO_URI=mongodb://user:pass@server.com:port/collection
+PORT=8080
+APP_URL=https://myapp.com
+EMAILUSER=email
+EMAILPASS=password
+EMAILHOST=email_server
+EMAILPORT=smtp_port
